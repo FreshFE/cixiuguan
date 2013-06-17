@@ -20,14 +20,16 @@ Route::group(array('prefix' => 'api'), function()
 	Route::post('checkin', 'ApiCheckinController@create');
 
 	// 获得景点签到数量
-	Route::get('checkin/{ place_id }', 'ApiCheckinController@showDetail');
+	Route::get('checkin/{place_id}', 'ApiCheckinController@show');
 
 	// 获得景点签到的评价
-	Route::get('checkin/{ place_id }/comments', 'ApiCheckinController@showComments');
+	Route::get('checkin/{place_id}/comments', 'ApiCheckinController@comments');
 
 	// 获得公告列表
+	Route::get('announcement', 'ApiAnnouncementController@index');
 
 	// 获得公告详情
+	Route::get('announcement/{announcement_id}', 'ApiAnnouncementController@show');
 });
 
 /**
