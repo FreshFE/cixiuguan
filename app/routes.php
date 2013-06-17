@@ -35,6 +35,10 @@ Route::group(array('prefix' => 'api'), function()
 /**
  * 管理员部分
  */
+Route::group(array('prefix' => 'api', 'before' => 'auth'), function()
+{
+
+});
 
 /**
  * 根目录
