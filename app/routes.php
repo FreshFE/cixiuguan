@@ -11,6 +11,32 @@
 |
 */
 
+/**
+ * API 部分
+ */
+Route::group(array('prefix' => 'api'), function()
+{
+	// 签到创建接口（含评价内容）
+	Route::post('checkin', 'ApiCheckinController@create');
+
+	// 获得景点签到数量
+	Route::get('checkin/{ place_id }', 'ApiCheckinController@showDetail');
+
+	// 获得景点签到的评价
+	Route::get('checkin/{ place_id }/comments', 'ApiCheckinController@showComments');
+
+	// 获得公告列表
+
+	// 获得公告详情
+});
+
+/**
+ * 管理员部分
+ */
+
+/**
+ * 根目录
+ */
 Route::get('/', function()
 {
 	return View::make('hello');
