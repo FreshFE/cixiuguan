@@ -9,6 +9,7 @@ class ApiCheckinController extends BaseController
 	 */
 	public function create()
 	{
+		// 测试
 		return 'create';
 	}
 
