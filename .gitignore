@@ -1,6 +1,7 @@
+/app/config/database.php
 /bootstrap/compiled.php
 /vendor
 composer.phar
 composer.lock
 .DS_Store
-/app/config/database.php
+*.bak
