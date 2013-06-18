@@ -7,8 +7,8 @@ class ApiAnnouncementController extends Controller
 	 */
 	public function index()
 	{
-		// 继续测试git
-		return 'index';
+		$data = DB::table('announcement')->get();
+        return Response::json($data);
 	}
 
 	/**
@@ -18,6 +18,7 @@ class ApiAnnouncementController extends Controller
 	 */
 	public function show($announcement_id)
 	{
-		return 'show' . $announcement_id;
+		$data = DB::table('announcement')->where('id', '=', $announcement_id)->lists('content');
+        return Response::json($data);
 	}
 }
