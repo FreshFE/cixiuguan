@@ -7,6 +7,7 @@ class ApiAnnouncementController extends Controller
 	 */
 	public function index()
 	{
+		// 继续测试git
 		return 'index';
 	}
 
