@@ -11,6 +11,7 @@ class ApiCheckinController extends BaseController
 	{
 		// 测试
 		// 测试 git
+		// cehshi git 2
 		return 'create';
 	}
 
