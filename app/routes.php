@@ -17,6 +17,7 @@
 Route::group(array('prefix' => 'api'), function()
 {
 	// 签到创建接口（含评价内容）
+	// test
 	Route::post('checkin', 'ApiCheckinController@create');
 
 	// 获得景点签到数量
