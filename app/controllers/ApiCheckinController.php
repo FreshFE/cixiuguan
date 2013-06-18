@@ -10,8 +10,7 @@ class ApiCheckinController extends BaseController
 	public function create()
 	{
 		// 测试
-		// 测试 git
-		// cehshi git 2
+		// 测试 git hello
 		return 'create';
 	}
 
