@@ -9,10 +9,7 @@ class ApiCheckinController extends BaseController
 	 */
 	public function create()
 	{
-		// 测试
-		// 测试 git
-		// 添加解决git冲突的问题
-		// Developing 分支
+		
 		return 'create';
 	}
 
@@ -23,7 +20,8 @@ class ApiCheckinController extends BaseController
 	 */
 	public function show($place_id)
 	{
-		return 'show' . $place_id;
+		$data = DB::table('checkin')->where('place_id', '=', $place_id)->lists('id');
+		return Response::json($data);
 	}
 
 	/**
@@ -33,6 +31,7 @@ class ApiCheckinController extends BaseController
 	 */
 	public function comments($place_id)
 	{
-		return 'comments' . $place_id;
+		$data = DB::table('checkin')->where('place_id', '=', $place_id)->lists('comments');
+		return Response::json($data);
 	}
 }
