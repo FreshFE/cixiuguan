@@ -15,4 +15,29 @@ class BaseController extends Controller {
 		}
 	}
 
+/*	protected function returnJson(array $result = array())
+	{
+		return Response::json($result);
+	}*/
+
+	protected function successJson($array = array())
+	{
+		$result = array(
+			'success' => 1,
+			'data' => $array
+		);
+
+		return Response::json($result);
+	}
+
+	protected function errorJson($array = array())
+	{
+		$result = array(
+			'success' => 0,
+			'data' => $array
+		);
+
+		return Response::json($result);
+	}
+
 }
