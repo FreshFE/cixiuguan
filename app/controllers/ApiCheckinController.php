@@ -9,7 +9,9 @@ class ApiCheckinController extends BaseController
 	 */
 	public function create()
 	{
-		
+		$input = Input::all();
+		//$input = array('id' => null , 'place_id' => 4 );
+		DB::table('checkin')->insert($input);
 		return 'create';
 	}
 
