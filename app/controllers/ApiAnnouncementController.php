@@ -1,6 +1,6 @@
 <?php
 
-class ApiAnnouncementController extends Controller
+class ApiAnnouncementController extends BaseController
 {
 	/**
 	 * 获得公告列表
@@ -8,7 +8,7 @@ class ApiAnnouncementController extends Controller
 	public function index()
 	{
 		$data = DB::table('announcement')->get();
-        return Response::json($data);
+        return $this->successJson($data);
 	}
 
 	/**
@@ -19,6 +19,6 @@ class ApiAnnouncementController extends Controller
 	public function show($announcement_id)
 	{
 		$data = DB::table('announcement')->where('id', '=', $announcement_id)->lists('content');
-        return Response::json($data);
+        return $this->successJson($data);
 	}
 }
