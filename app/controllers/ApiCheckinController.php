@@ -9,10 +9,25 @@ class ApiCheckinController extends BaseController
 	 */
 	public function create()
 	{
-		$input = Input::all();
-		//$input = array('id' => null , 'place_id' => 4 );
-		DB::table('checkin')->insert($input);
-		return 'create';
+		$data = Input::all();
+		$data = array('comments' => '222222','id' => NULL );
+			
+
+	    $rules = array(
+	    					'comments' => array('required', 'min:10')
+	    			   );
+		$validator = Validator::make($data,$rules);
+
+		if ($validator->fails())
+		{
+			return $messages = $validator->messages();
+	        //return Redirect::to('register')->withErrors($validator);
+	    }else
+	    {
+	    	DB::table('checkin')->insert($data);
+		
+	    }
+			return 'create';
 	}
 
 	/**
