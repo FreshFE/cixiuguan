@@ -9,31 +9,36 @@ class ApiCheckinController extends BaseController
 	 */
 	public function create()
 	{
+		// 获得 post 数据传入
 		$data = Input::all();
+
+		// 测试数据，临时
 		$data = array(
-			'id' => 'NULL' ,
 			'place_id' => 6,
 			'lat' => '22.532987',
 			'lng' => '22.532987',
 			'comments' => '988okokokokokokokok',
 			'stars' => 3,
-			'valid_tag' => 56,
-			'create_at' => '2013-06-18 20:43:55',
-			'update_at' => '2013-06-18 20:43:55'
+
 		);
-		$rules = array(
-			'place_id' =>  array('required','numeric'),
+
+		// 验证规则
+		$validator = Validator::make($data, array(
+			'place_id' =>  array('required', 'numeric'),
 			'lat' => array('required'),
 			'lng' => array('required'),
-			'comments' => array('required','max:500'),
-			'stars' => array('required','integer')	 	
-		);
-		$validator = Validator::make($data,$rules);
+			'comments' => array('required', 'max:500'),
+			'stars' => array('required', 'integer')
+		));
+
 		if ($validator->fails()) {
-			return $messages = $validator->messages();
-	    }else
-	    	DB::table('checkin')->insert($data);	
-		return 'create';
+			// 验证失败
+			return $this->errorJson($validator->messages());
+	    } else {
+	    	// 验证成功，插入数据库
+			DB::table('checkin')->insert($data);
+			return $this->successJson($data);
+	    }
 	}
 
 	/**
@@ -43,8 +48,8 @@ class ApiCheckinController extends BaseController
 	 */
 	public function show($place_id)
 	{
-		$data = DB::table('checkin')->where('place_id', '=', $place_id)->lists('id');
-		return Response::json($data);
+		$data = DB::table('checkin')->where('place_id', '=', $place_id)->count();
+		return $this->successJson($data);
 	}
 
 	/**
@@ -55,6 +60,6 @@ class ApiCheckinController extends BaseController
 	public function comments($place_id)
 	{
 		$data = DB::table('checkin')->where('place_id', '=', $place_id)->lists('comments');
-		return Response::json($data);
+		return $this->successJson($data);
 	}
 }
