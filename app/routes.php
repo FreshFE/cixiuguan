@@ -47,3 +47,35 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+
+/**
+ * 得到布告详情
+ */
+Route::get('announcementIndex', 'AnnouncementController@index');
+Route::post('announcementShow', 'AnnouncementController@show');
+Route::post('announcement/create', 'AnnouncementController@create');
+Route::get('announcement/del/{id}', 'AnnouncementController@destory');
+Route::get('announcement/update/{id}', 'AnnouncementController@put');
+//Route::get('announcement/updatePage/{obj}', 'AnnouncementController@updatePage');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
