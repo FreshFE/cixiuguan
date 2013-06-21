@@ -2,6 +2,7 @@
 
 class AnnouncementController extends BaseController
 {
+	
 	/**
 	 * 获得公告所有数据
 	 *
@@ -9,32 +10,31 @@ class AnnouncementController extends BaseController
 	public  function index()
 	{
 		$result = AnnouncementModel::getAnnouncement();
-
 		if(is_array($result) && count($result)> 0 ) {
 			return View::make('announcement', array('announcementDetail' => $result));
 		} else {
 			echo "error";
 		}
-
 	}
+
 
 	/**
 	 * 获得公告数据
 	 *
-	 *@param int $id
+	 *@param int $aid
 	 */
 	public function show()
 	{
-		$id = Input::get("aid");
-
+		$id = Input::get("id");
+exit($id);
 		$result = AnnouncementModel::getAnnouncementById($id);
 		if(is_array($result) && count($result)> 0 ) {
-
 			return View::make('announcement', array('announcementDetail' => $result));
 		} else {
 			echo "error";
 		}
 	}
+
 
 	/**
 	 * 插入公告数据
@@ -58,12 +58,13 @@ class AnnouncementController extends BaseController
 	    } else {
 	    	$result = AnnouncementModel::insertAnnouncement($inputData);
 	    	if($result == true) {
-	    		return Redirect::to('announcementIndex');
+	    		return Redirect::to('announcement');
 	    	} else {
 	    		return "error";
 	    	}
 	    }
 	}
+
 
 	/**
 	 * 删除公告数据
@@ -78,5 +79,12 @@ class AnnouncementController extends BaseController
 		} else {
 			echo "error";
 		}
+	}
+
+
+	public function updatePage($announcements)
+	{
+		$announcementDetail = explode(",", $announcements);
+		return View::make('aUpdatePage', array('announcementDetail' => $announcementDetail));
 	}
 }
