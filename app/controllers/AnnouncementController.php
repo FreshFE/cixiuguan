@@ -87,9 +87,10 @@ class AnnouncementController extends BaseController
 	}
 
 
-	public function updatePage($announcements)
-	{
-		$announcementDetail = explode(",", $announcements);
-		return View::make('aUpdatePage', array('announcementDetail' => $announcementDetail));
+	public function edit($announcementStr){
+		$result = explode(",", $announcementStr);
+		var_dump($result);
+		exit();
+		//return View::make('announcement', array('announcementDetail' => $result));
 	}
 }
