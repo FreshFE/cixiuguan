@@ -18,7 +18,7 @@
 
 <!--根据ID查找数据-->
 		<div id="search">
-			<?php echo Form::open(array('url' => 'announcement', 'method' => 'post')) ?>
+			<?php echo Form::open(array('url' => 'admin/announcement/search')) ?>
 				<span>编号搜索</span>
 				<?php echo Form::text('id'); ?>
 			    <?php echo Form::submit('search'); ?>
@@ -38,11 +38,11 @@
 				<tr>
 					<td>
 						<?php echo $id = $announcementArray['id']; ?>
-						<?php echo HTML::link("announcement/".$id."del/", '删除') ?>
+						<?php echo HTML::link("admin/announcement/".$id."/delete", '删除') ?>
 					</td>
 				
 					<td>
-						<?php echo HTML::link("announcement/updatePage/".implode(",", $announcementArray), $announcementArray['title']) ?>
+						<?php echo HTML::link("admin/announcement/edit/".implode(",", $announcementArray), $announcementArray['title']) ?>
 
 					</td>
 				
