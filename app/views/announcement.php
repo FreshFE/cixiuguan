@@ -5,9 +5,9 @@
 	<body>
 
 
-
+<!--添加数据模块-->
 		<div id="addAnnouncement">
-			<?php echo Form::open(array('url' => 'announcement/create', 'method' => 'post')) ?>
+			<?php echo Form::open(array('url' => 'admin/announcement', 'method' => 'post')) ?>
 				主题<?php echo Form::text('title'); ?>
 				内容<?php echo Form::text('content'); ?>
 				标签<?php echo Form::text('valid_tag'); ?>
@@ -15,10 +15,12 @@
 			<?php echo Form::close() ?>
 		</div>	
 
+
+<!--根据ID查找数据-->
 		<div id="search">
-			<?php echo Form::open(array('url' => 'announcementShow', 'method' => 'post')) ?>
+			<?php echo Form::open(array('url' => 'announcement', 'method' => 'post')) ?>
 				<span>编号搜索</span>
-				<?php echo Form::text('aid'); ?>
+				<?php echo Form::text('id'); ?>
 			    <?php echo Form::submit('search'); ?>
 		    <?php echo Form::close() ?>
 		</div>
@@ -32,23 +34,24 @@
 					<td>创建时间</td>
 				</tr>
 			
-				<?php foreach ($announcementDetail as $announcementObj) { ?>
+				<?php foreach ($announcementDetail  as $announcementArray) { ?>
 				<tr>
 					<td>
-						<?php echo $aid = $announcementObj ->id; ?>
-						<?php echo HTML::link("announcement/del/".$aid, '删除') ?>
+						<?php echo $id = $announcementArray['id']; ?>
+						<?php echo HTML::link("announcement/".$id."del/", '删除') ?>
 					</td>
 				
 					<td>
-						<?php echo HTML::link("#", $announcementObj ->title) ?>
+						<?php echo HTML::link("announcement/updatePage/".implode(",", $announcementArray), $announcementArray['title']) ?>
+
 					</td>
 				
 					<td>
-						<?php echo $announcementObj ->content; ?>
+						<?php echo $announcementArray['content']; ?>
 					</td>
 				
 					<td>
-						<?php echo $announcementObj ->create_at; ?>
+						<?php echo $announcementArray['create_at']; ?>
 					</td>
 				</tr>
 				<?php 	} ?>	
