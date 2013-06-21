@@ -33,7 +33,7 @@
 					<td>内容</td>
 					<td>创建时间</td>
 				</tr>
-			
+
 				<?php foreach ($announcementDetail  as $announcementArray) { ?>
 				<tr>
 					<td>
@@ -42,7 +42,9 @@
 					</td>
 				
 					<td>
-						<?php echo HTML::link("admin/announcement/edit/".implode(",", $announcementArray), $announcementArray['title']) ?>
+					<!--	<?php echo HTML::link("admin/announcement/edit/".implode(",", $announcementArray), $announcementArray['title']) ?>
+-->
+<?php echo HTML::link("admin/announcement/edit/".json_decode($announcementArray), $announcementArray['title']) ?>
 
 					</td>
 				
