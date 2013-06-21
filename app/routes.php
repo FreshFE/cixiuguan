@@ -55,8 +55,11 @@ Route::get('/', function()
 
 
 /**
- * 得到布告详情
+ * 管理员登陆
  */
+Route::get('login', 'LoginController@index');
+Route::post('loginSuccess', 'LoginController@loginSuccess');
+
 
 
 
