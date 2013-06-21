@@ -17,16 +17,21 @@ class AnnouncementController extends BaseController
 		}
 	}
 
+	public function search()
+	{
+		$id = Input::get("id");
+
+		return $this->show($id);
+	}
+
 
 	/**
 	 * 获得公告数据
 	 *
 	 *@param int $aid
 	 */
-	public function show()
+	public function show($id)
 	{
-		$id = Input::get("id");
-exit($id);
 		$result = AnnouncementModel::getAnnouncementById($id);
 		if(is_array($result) && count($result)> 0 ) {
 			return View::make('announcement', array('announcementDetail' => $result));
@@ -58,7 +63,7 @@ exit($id);
 	    } else {
 	    	$result = AnnouncementModel::insertAnnouncement($inputData);
 	    	if($result == true) {
-	    		return Redirect::to('announcement');
+	    		return Redirect::action('AnnouncementController@index');
 	    	} else {
 	    		return "error";
 	    	}
@@ -75,7 +80,7 @@ exit($id);
 	{ 
 		$result = AnnouncementModel::deleteById($id);
 		if($result > 0){
-			return Redirect::to('announcementIndex');
+			return Redirect::action('AnnouncementController@index');
 		} else {
 			echo "error";
 		}
