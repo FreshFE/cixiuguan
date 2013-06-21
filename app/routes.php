@@ -37,10 +37,11 @@ Route::group(array('prefix' => 'api'), function()
  */
 Route::group(array('prefix' => 'admin'), function()
 {
-	Route::get('announcement', 'AnnouncementController@index');
-	Route::post('announcement', 'AnnouncementController@create');
+	Route::get('announcement', 'AnnouncementController@index');//获得公告列表
+	Route::post('announcement', 'AnnouncementController@create');//添加公告
+	Route::post('announcement/search', 'AnnouncementController@search'); 
 	Route::get('announcement/{id}', 'AnnouncementController@show');
-	Route::get('announcement/{id}/delete', 'AnnouncementController@destory');
+	Route::get('announcement/{id}/delete', 'AnnouncementController@destory');//删除一个公告
 	Route::get('announcement/{id}/edit', 'AnnouncementController@put');
 });
 
