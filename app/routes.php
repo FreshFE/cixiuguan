@@ -35,9 +35,13 @@ Route::group(array('prefix' => 'api'), function()
 /**
  * 管理员部分
  */
-Route::group(array('prefix' => 'api', 'before' => 'auth'), function()
+Route::group(array('prefix' => 'admin'), function()
 {
-
+	Route::get('announcement', 'AnnouncementController@index');
+	Route::post('announcement', 'AnnouncementController@create');
+	Route::get('announcement/{id}', 'AnnouncementController@show');
+	Route::get('announcement/{id}/delete', 'AnnouncementController@destory');
+	Route::get('announcement/{id}/edit', 'AnnouncementController@put');
 });
 
 /**
@@ -52,12 +56,7 @@ Route::get('/', function()
 /**
  * 得到布告详情
  */
-Route::get('announcementIndex', 'AnnouncementController@index');
-Route::post('announcementShow', 'AnnouncementController@show');
-Route::post('announcement/create', 'AnnouncementController@create');
-Route::get('announcement/del/{id}', 'AnnouncementController@destory');
-Route::get('announcement/update/{id}', 'AnnouncementController@put');
-//Route::get('announcement/updatePage/{obj}', 'AnnouncementController@updatePage');
+
 
 
 
