@@ -10,6 +10,7 @@ class AnnouncementModel extends Eloquent
 	public static function getAnnouncement()
 	{
 		$result = DB::table('announcement')-> get();
+
 		return $result;
 	}
 
