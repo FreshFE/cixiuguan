@@ -3,6 +3,8 @@
 	</head>
 
 	<body>
+<!--退出按钮-->
+
 
 
 <!--添加数据模块-->
@@ -42,10 +44,7 @@
 					</td>
 				
 					<td>
-					<!--	<?php echo HTML::link("admin/announcement/edit/".implode(",", $announcementArray), $announcementArray['title']) ?>
--->
-<?php echo HTML::link("admin/announcement/edit/".json_decode($announcementArray), $announcementArray['title']) ?>
-
+						<?php echo HTML::link("admin/announcement/".$id."/edit/", $announcementArray['title']) ?>
 					</td>
 				
 					<td>
