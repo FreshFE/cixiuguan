@@ -3,9 +3,8 @@
 class LoginModel extends Eloquent
 {
 	/**
-	 * 管理员登陆
+	 * 管理员登陆 *
 	 *
-	 * 
 	 */
 	public static function adminLogin($username, $password)
 	{
@@ -19,9 +18,8 @@ class LoginModel extends Eloquent
 	}
 
 	/**
-	 * 登陆
+	 * 登陆 *
 	 *
-	 * 
 	 */
 	public static function login($username, $password)
 	{
