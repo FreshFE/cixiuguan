@@ -10,7 +10,6 @@ class AnnouncementModel extends Eloquent
 	public static function getAnnouncement()
 	{
 		$result = DB::table('announcement')-> get();
-
 		return $result;
 	}
 
@@ -53,8 +52,9 @@ class AnnouncementModel extends Eloquent
 	 */
 	public static function updateById($id, $announcementArray)
 	{
-
-		$result = DB::table('announcement')->where('id', '=', $id)->update($announcementArray);
+		$result = DB::table('announcement')
+							->where('id', '=', $id)
+							->update($announcementArray);
 		return $result;
 	}  
 }
