@@ -4,7 +4,7 @@ class AnnouncementModel extends Eloquent
 {
 
 	/**
-	 * 获得公告所有数据
+	 * 获得公告所有数据 *
 	 *
 	 */
 	public static function getAnnouncement()
@@ -14,7 +14,7 @@ class AnnouncementModel extends Eloquent
 	}
 
 	/**
-	 * 获得公告数据
+	 * 获得公告数据 *
 	 *
 	 *@param int $id
 	 */
@@ -25,7 +25,7 @@ class AnnouncementModel extends Eloquent
 	}
 
 	/**
-	 * 插入公告数据
+	 * 插入公告数据 *
 	 *
 	 */
 	public static function insertAnnouncement($announcementArray)
@@ -35,7 +35,7 @@ class AnnouncementModel extends Eloquent
 	}
 
 	/**
-	 * 删除公告数据
+	 * 删除公告数据 *
 	 *
 	 *@param int $id
 	 */
@@ -46,7 +46,7 @@ class AnnouncementModel extends Eloquent
 	}
 
 	/**
-	 * 更新公告数据
+	 * 更新公告数据 *
 	 *
 	 *@param int $id, array announcement
 	 */
