@@ -21,7 +21,9 @@ class LoginController extends BaseController
 	{
 		$username = Input::get('username');
 		$password = Input::get('password');
+
 		$result = LoginModel::adminLogin($username, $password);
+		
 		if ($result) {
 			Session::put('username', $username);
 			return Redirect::action('AnnouncementController@index');
