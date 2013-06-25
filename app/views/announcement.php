@@ -10,9 +10,9 @@
 <!--添加数据模块-->
 		<div id="addAnnouncement">
 			<?php echo Form::open(array('url' => 'admin/announcement', 'method' => 'post')) ?>
-				主题<?php echo Form::text('title'); ?>
-				内容<?php echo Form::text('content'); ?>
-				标签<?php echo Form::text('valid_tag'); ?>
+				主题<?php echo Form::text('title'); ?><br/>
+				内容<?php echo Form::textarea('content'); ?></br>
+				合格标签<?php echo Form::text('valid_tag'); ?><br/>
 				<?php echo Form::submit('add'); ?>
 			<?php echo Form::close() ?>
 		</div>	
@@ -34,6 +34,7 @@
 					<td>主题</td>
 					<td>内容</td>
 					<td>创建时间</td>
+					<td>更新时间</td>
 				</tr>
 
 				<?php foreach ($announcementDetail  as $announcementArray) { ?>
@@ -53,6 +54,10 @@
 				
 					<td>
 						<?php echo $announcementArray['create_at']; ?>
+					</td>
+
+					<td>
+						<?php echo $announcementArray['update_at']; ?>
 					</td>
 				</tr>
 				<?php 	} ?>	
