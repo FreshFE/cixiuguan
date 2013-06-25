@@ -65,7 +65,7 @@ class ApiCheckinController extends BaseController
 	 */
 	public function comments($place_id)
 	{
-		$data = DB::table('checkin')->where('place_id', '=', $place_id)->lists('comments');
+		$data = DB::table('checkin')->where('place_id', '=', $place_id)->get();
 		return $this->successJson($data);
 	}
 }
