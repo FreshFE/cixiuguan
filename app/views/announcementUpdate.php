@@ -28,6 +28,13 @@
 		</tr>
 		
 		<tr>
+			<td>合格标签</td>
+			<td>
+				<input type="text" name="content" value= <?php echo $announcementArray['valid_tag'] ?> readonly>
+			</td>
+		</tr>
+
+		<tr>
 			<td>创建时间</td>
 			<td>
 			<input type="text" name="create_at" value= <?php echo $announcementArray['create_at'] ?> readonly>
