@@ -12,44 +12,61 @@
 */
 
 /**
- * API 閮ㄥ垎
+ * API部分
  */
 Route::group(array('prefix' => 'api'), function()
 {
-	// 绛惧埌鍒涘缓鎺ュ彛锛堝惈璇勪环鍐呭锛�	Route::post('checkin', 'ApiCheckinController@create');
+	// 签到创建接口（含评价内容）
+	Route::post('checkin', 'ApiCheckinController@create');
 
-	// 鑾峰緱鏅偣绛惧埌鏁伴噺
+	// 获得景点签到数量
 	Route::get('checkin/{place_id}', 'ApiCheckinController@show');
 
-	// 鑾峰緱鏅偣绛惧埌鐨勮瘎浠�	Route::get('checkin/{place_id}/comments', 'ApiCheckinController@comments');
+	// 获得景点签到的评价
+	Route::get('checkin/{place_id}/comments', 'ApiCheckinController@comments');
 
-	// 鑾峰緱鍏憡鍒楄〃
+	// 获得公告列表
 	Route::get('announcement', 'ApiAnnouncementController@index');
 
-	// 鑾峰緱鍏憡璇︽儏
+	// 获得公告详情
 	Route::get('announcement/{announcement_id}', 'ApiAnnouncementController@show');
 });
 
 /**
- * 绠＄悊鍛橀儴鍒� */
+ * 管理员部分
+ */
 Route::group(array('prefix' => 'admin'), function()
 {
-	Route::get('announcement', 'AnnouncementController@index');//鑾峰緱鍏憡鍒楄〃
-	Route::post('announcement', 'AnnouncementController@create');//娣诲姞鍏憡
+	//布告列表
+	Route::get('announcement', 'AnnouncementController@index');
+
+	//布告创建
+	Route::post('announcement', 'AnnouncementController@create');
+
+	//布告搜索
 	Route::post('announcement/search', 'AnnouncementController@search'); 
 	Route::get('announcement/{id}', 'AnnouncementController@show');
-	Route::get('announcement/{id}/delete', 'AnnouncementController@destory');//鍒犻櫎涓�釜鍏憡
+
+	//布告删除
+	Route::get('announcement/{id}/delete', 'AnnouncementController@destory');
+
+	//布告更新
 	Route::post('announcement/edit', 'AnnouncementController@put');
 	Route::get('announcement/{id}/edit', 'AnnouncementController@edit');
 	
+	//签到列表
 	Route::get('checkin', 'CheckinController@index');
+
+	//签到搜索
 	Route::post('checkin/search', 'CheckinController@search');
 	Route::get('checkin/{id}', 'CheckinController@show');
+
+	//签到删除
 	Route::get('checkin/{id}/delete', 'CheckinController@destory');
 });
 
 /**
- * 鏍圭洰褰� */
+ * 根目录 */
 Route::get('/', function()
 {
 	return View::make('hello');
@@ -57,8 +74,12 @@ Route::get('/', function()
 
 
 /**
- * 绠＄悊鍛樼櫥闄� */
+ * 管理员登陆
+ */
+//登陆页面
 Route::get('login', 'LoginController@index');
+
+//登陆成功跳转
 Route::post('loginSuccess', 'LoginController@loginSuccess');
 
 
