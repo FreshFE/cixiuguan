@@ -1,12 +1,12 @@
+<!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf8">
+		<title></title>
 	</head>
-
+	
 	<body>
-
-
-
-<!--根据ID查找数据-->
+		<!--根据ID查找数据-->
 		<div id="search">
 			<?php echo Form::open(array('url' => 'admin/checkin/search')) ?>
 				<span>编号搜索</span>
@@ -19,9 +19,12 @@
 			<table>
 				<tr>
 					<td>编号</td>
-					<td>主题</td>
-					<td>内容</td>
+					<td>精度</td>
+					<td>纬度</td>
+					<td>评价</td>
+					<td>星</td>
 					<td>创建时间</td>
+					<td>更新时间</td>
 				</tr>
 
 				<?php foreach ($checkinDetail  as $checkinArray) { ?>
@@ -45,6 +48,14 @@
 					
 					<td>
 						<?php echo $checkinArray['stars']; ?>
+					</td>
+
+					<td>
+						<?php echo $checkinArray['create_at']; ?>
+					</td>
+
+					<td>
+						<?php echo $checkinArray['update_at']; ?>
 					</td>
 				</tr>
 				<?php 	} ?>	
