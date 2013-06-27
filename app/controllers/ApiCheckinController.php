@@ -65,7 +65,31 @@ class ApiCheckinController extends BaseController
 	 */
 	public function comments($place_id)
 	{
-		$data = DB::table('checkin')->where('place_id', '=', $place_id)->get();
-		return $this->successJson($data);
+		//$data = DB::table('checkin')->where('place_id', '=', $place_id)->get();
+		//return $this->successJson($data);
+		$page = Input::get('page');
+		$comments = array();
+		$data = DB::table('checkin')->where('place_id', '=', $place_id)->paginate(10);
+		$totalPage =$data->getLastPage();
+		
+		foreach ($data as $value) {
+			$comments[] = $value;
+			/*
+			$comments[] = $value['comments'];
+			$comments[] = $value['id'];
+			$comments[] = $value['place_id'];
+			$comments[] = $value['lat'];
+			$comments[] = $value['lng'];
+			$comments[] = $value['stars'];
+			$comments[] = $value['valid_tag'];
+			$comments[] = $value['create_at'];
+			$comments[] = $value['update_at'];*/
+		}
+
+		if($page > $totalPage){//如果输入的页数超过总页数则return errorJson
+			return $this->errorCommentsJson($comments);
+		}else{
+			return $this->successCommentsJson($comments);
+		}
 	}
 }
