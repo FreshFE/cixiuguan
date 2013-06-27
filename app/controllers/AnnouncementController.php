@@ -48,11 +48,21 @@ class AnnouncementController extends BaseController
 	 */
 	public function create()
 	{
-		//在接受的所有元素中，去除token元素
-		$inputData = Input::except('_token');
-			
+		date_default_timezone_set('PRC');//设置成北京时间
+		$create_at = date('Y-m-d H:i'); 
+		$title = Input::get('title');
+		$content = Input::get('content');
+		$valid_tag = Input::get('valid_tag');
+		
+		$data = array(
+			'title' => $title,
+			'content' => $content, 
+			'valid_tag' => $valid_tag,
+			'create_at' => $create_at
+		);
+
 		//数据验证
-		$validator = Validator::make($inputData, array(
+		$validator = Validator::make($data, array(
 			'title' => array('required', 'max:100'),
 			'content' => array('required', 'max:500'),
 			'valid_tag' => array('required', 'integer')
@@ -61,7 +71,7 @@ class AnnouncementController extends BaseController
 		if ($validator->fails()) {
 			return 'error';
 	    } else {
-	    	$result = AnnouncementModel::insertAnnouncement($inputData);
+	    	$result = AnnouncementModel::insertAnnouncement($data);
 	    	if($result == true) {
 	    		return Redirect::action('AnnouncementController@index');
 	    	} else {
