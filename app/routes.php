@@ -82,7 +82,10 @@ Route::get('login', 'LoginController@index');
 //登陆成功跳转
 Route::post('loginSuccess', 'LoginController@loginSuccess');
 
-
+Route::get('admin/test/checkin', function()
+{
+	return View::make('admin/checkin/index');
+});
 
 
 
