@@ -18,8 +18,8 @@
 			<tr>
 				<td class="span1">编号</td>
 				<td>评价</td>
-				<td>星级</td>
-				<td>创建时间</td>
+				<td class="span2">星级</td>
+				<td class="span2">创建时间</td>
 				<td class="span1">操作</td>
 			</tr>
 		</thead>
