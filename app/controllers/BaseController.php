@@ -40,4 +40,25 @@ class BaseController extends Controller {
 		return Response::json($result);
 	}
 
+	protected function successCommentsJson($array = array())
+	{
+		$result = array(
+			'more' => 'yes',
+			'success' => 1,
+			'data' => $array
+		);
+
+		return Response::json($result);
+	}
+
+	protected function errorCommentsJson($array = array())
+	{
+		$result = array(
+			'more' => 'no',
+			'error' => 0,
+			'data' => $array
+		);
+
+		return Response::json($result);
+	}
 }
