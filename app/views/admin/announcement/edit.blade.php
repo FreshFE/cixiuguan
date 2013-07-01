@@ -20,7 +20,7 @@
 		<div class="control-group">
 			<label class="control-label">内容</label>
 			<div class="controls">
-				{{ Form::textarea('content', $data->content, array('class' => 'span6', 'rows' => 8)) }}
+				{{ Form::textarea('content', $data->content, array('class' => 'ckeditor', 'rows' => 8)) }}
 			</div>
 		</div>
 
@@ -31,5 +31,11 @@
 		{{ Form::hidden('id', $data->id) }}
 
 	{{ Form::close() }}
+
+@stop
+
+@section('bodyjs')
+
+	<script type="text/javascript" src="{{ asset('assets/js/ckeditor/ckeditor.js') }}"></script>
 
 @stop
