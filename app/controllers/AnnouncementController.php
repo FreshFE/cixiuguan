@@ -28,56 +28,52 @@ class AnnouncementController extends BaseController
 	 */
 	public function show($id)
 	{
-		$result = AnnouncementModel::getAnnouncementById($id);
+		return View::make('admin/announcement/show',
+			array('data' => AnnouncementModel::firstById($id))
+		);
+	}
 
-		if(is_array($result) && count($result)> 0 ) {
-			return View::make('announcement', array('announcementDetail' => $result));
-		} else {
-			echo 'error';
-		}
+	public function getCreate()
+	{
+		return View::make('admin/announcement/create');
 	}
 
 	/**
-	 * 创建布告 *
-	 *	 
+	 * 创建布告
 	 */
-	public function create()
-	{
-		date_default_timezone_set('PRC');//设置成北京时间
-		$create_at = date('Y-m-d H:i'); 
-		$title = Input::get('title');
-		$content = Input::get('content');
-		$valid_tag = Input::get('valid_tag');
-		
+	public function postCreate()
+	{		
 		$data = array(
-			'title' => $title,
-			'content' => $content, 
-			'valid_tag' => $valid_tag,
-			'create_at' => $create_at
+			'title' => Input::get('title'),
+			'content' => Input::get('content'), 
+			'valid_tag' => 0,
+			'create_at' => date('Y-m-d H:i')
 		);
 
-		//数据验证
+		// 验证规则
 		$validator = Validator::make($data, array(
 			'title' => array('required', 'max:100'),
-			'content' => array('required', 'max:500'),
-			'valid_tag' => array('required', 'integer')
+			'content' => array('required', 'max:500')
 		));
 
-		if ($validator->fails()) {
-			return 'error';
-	    } else {
-	    	$result = AnnouncementModel::insertAnnouncement($data);
-	    	if($result == true) {
-	    		return Redirect::action('AnnouncementController@index');
-	    	} else {
-	    		return 'error';
-	    	}
+		// 验证未通过
+		if(! $validator->fails()) {
+			Session::flash('error', $validator->messages()->first());
 	    }
+
+	    // 创建失败
+	    if(! AnnouncementModel::insertAnnouncement($data)) {
+	    	Session::flash('error', '创建失败');
+	    }
+
+	    // 创建成功
+		return Redirect::action('AnnouncementController@index');
 	}
 
 	/**
-	 * 删除布告	 *
-	 *@param int $id
+	 * 删除布告
+	 *
+	 * @param int $id
 	 */
 	public function destory($id)
 	{ 
@@ -91,40 +87,47 @@ class AnnouncementController extends BaseController
 	}
 
 	/**
-	 * 修改布告字段，跳转到修改页面 *
-	 *@param int $id
+	 * 修改布告字段，跳转到修改页面
+	 *
+	 * @param int $id
+	 * @return stdClass
 	 */
-	public function edit($id)
+	public function getEdit($id)
 	{
-		$result = AnnouncementModel::getAnnouncementById($id);
-		
-		if(is_array($result) && count($result)> 0 ) {
-			return View::make('announcementUpdate', array('announcementDetail' => $result));
-		} else {
-			echo 'error';
-		}
+		return View::make('admin/announcement/edit',
+			array('data' => AnnouncementModel::firstById($id))
+		);
 	}
 	
 	/**
-	 * 修改布告字段 *
-	 *
+	 * 修改布告字段
 	 */
-	public function put()
+	public function postEdit()
 	{
 		$id = Input::get('id');
 
 		$data = array(
-			'title' => 	 Input::get('title'),
-			'content' => Input::get('content'),
+			'title' => Input::get('title'),
+			'content' => Input::get('content'), 
 		);
-		
-		$result = AnnouncementModel::updateById($id, $data);
-		
-		if ($result > 0) {
-			return Redirect::action('AnnouncementController@index');
-		} else {
-			return "error";
-		}		
+
+		// 验证规则
+		$validator = Validator::make($data, array(
+			'title' => array('required', 'max:100'),
+			'content' => array('required', 'max:500')
+		));
+
+		// 验证未通过
+		if(! $validator->fails()) {
+			Session::flash('error', $validator->messages()->first());
+	    }
+
+	    // 创建失败
+	    if(! AnnouncementModel::updateById($id, $data)) {
+	    	Session::flash('error', '编辑失败');
+	    }
+
+	    // 创建成功
+		return Redirect::action('AnnouncementController@index');
 	}
-	
 }
