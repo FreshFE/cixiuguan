@@ -83,9 +83,9 @@ Route::get('login', 'LoginController@index');
 Route::post('loginSuccess', 'LoginController@loginSuccess');
 
 //统计图
+Route::get('bar', 'StatisticalController@getBar');
+
 Route::get('statistical', 'StatisticalController@index');
-
-
 
 
 
