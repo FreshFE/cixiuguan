@@ -51,7 +51,7 @@ Route::group(array('prefix' => 'admin'), function()
 		Route::post('create', 'AnnouncementController@postCreate');
 		Route::get('search', 'AnnouncementController@search');
 		Route::get('{id}/edit', 'AnnouncementController@getEdit');
-		Route::post('{id}/edit', 'AnnouncementController@postEdit');
+		Route::post('edit', 'AnnouncementController@postEdit');
 		Route::get('{id}', 'AnnouncementController@show');
 		Route::get('{id}/delete', 'AnnouncementController@destory');
 	});

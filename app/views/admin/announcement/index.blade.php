@@ -35,7 +35,7 @@
 				<td>
 					<div class="btn-group">
 						<a href="{{ action('AnnouncementController@show', array('id' => $data->id)) }}" class="btn btn-mini" title="详情"><i class="icon-th"></i></a>
-						<a href="{{ action('AnnouncementController@postEdit', array('id' => $data->id)) }}" class="btn btn-mini" title="编辑"><i class="icon-edit"></i></a>
+						<a href="{{ action('AnnouncementController@getEdit', array('id' => $data->id)) }}" class="btn btn-mini" title="编辑"><i class="icon-edit"></i></a>
 						<a href="{{ action('AnnouncementController@destory', array('id' => $data->id)) }}" class="btn btn-mini" title="删除"><i class="icon-trash"></i></a>
 					</div>
 				</td>
