@@ -30,32 +30,32 @@
 				<?php foreach ($checkinDetail  as $checkinArray) { ?>
 				<tr>
 					<td>
-						<?php echo $id = $checkinArray['id']; ?>
+						<?php echo $id = $checkinArray->id; ?>
 						<?php echo HTML::link("admin/checkin/".$id."/delete", '删除') ?>
 					</td>
 				
 					<td>
-						<?php echo $checkinArray['lat']; ?>
+						<?php echo $checkinArray->lat; ?>
 					</td>
 				
 					<td>
-						<?php echo $checkinArray['lng']; ?>
+						<?php echo $checkinArray->lng; ?>
 					</td>
 					
 					<td>
-						<?php echo $checkinArray['comments']; ?>
+						<?php echo $checkinArray->comments; ?>
 					</td>
 					
 					<td>
-						<?php echo $checkinArray['stars']; ?>
+						<?php echo $checkinArray->stars; ?>
 					</td>
 
 					<td>
-						<?php echo $checkinArray['create_at']; ?>
+						<?php echo $checkinArray->create_at; ?>
 					</td>
 
 					<td>
-						<?php echo $checkinArray['update_at']; ?>
+						<?php echo $checkinArray->update_at; ?>
 					</td>
 				</tr>
 				<?php 	} ?>	
