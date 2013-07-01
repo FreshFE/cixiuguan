@@ -55,7 +55,7 @@ class BaseController extends Controller {
 	{
 		$result = array(
 			'more' => 'no',
-			'error' => 0,
+			'success' => 0,
 			'data' => $array
 		);
 
