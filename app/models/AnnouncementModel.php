@@ -25,6 +25,17 @@ class AnnouncementModel extends Eloquent
 	}
 
 	/**
+	 * 更具ID获得第一条数据
+	 *
+	 * @param int $id
+	 * @return stdClass
+	 */
+	public static function firstById($id)
+	{
+		return DB::table('announcement')->where('id', '=', $id)->first();
+	}
+
+	/**
 	 * 插入公告数据 *
 	 *
 	 */
