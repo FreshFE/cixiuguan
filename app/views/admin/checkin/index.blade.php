@@ -31,7 +31,7 @@
 				<td>{{ $data->stars }}</td>
 				<td>{{ $data->create_at }}</td>
 				<td>
-					<a href="#" class="btn btn-mini" title="删除"><i class="icon-trash"></i></a>
+					<a href="{{ action('CheckinController@destory', array('id' => $data->id)) }}" class="btn btn-mini" title="删除"><i class="icon-trash"></i></a>
 				</td>
 			</tr>
 			@endforeach
