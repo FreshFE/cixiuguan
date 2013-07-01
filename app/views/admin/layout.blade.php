@@ -39,8 +39,8 @@
 		<div class="sidebar">
 			<div class="logo">Cixiuguan</div>
 			<ul class="nav nav-pills nav-stacked">
-				<li class="active"><a href="#">评价管理</a></li>
-				<li><a href="#">公告管理</a></li>
+				<li class="active"><a href="{{ action('CheckinController@index') }}">评价管理</a></li>
+				<li><a href="{{ action('AnnouncementController@index') }}">公告管理</a></li>
 			</ul>
 		</div>
 		<div class="mainarea">
