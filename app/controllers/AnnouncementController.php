@@ -3,18 +3,13 @@
 class AnnouncementController extends BaseController
 {
 	/**
-	 * 显示布告数据 *
-	 *
+	 * 显示布告数据
 	 */
 	public  function index()
 	{
-		$result = AnnouncementModel::getAnnouncement();
-
-		if(is_array($result) && count($result)> 0 ) {
-			return View::make('announcement', array('announcementDetail' => $result));
-		} else {
-			echo 'error';
-		}
+		return View::make('admin/announcement/index',
+			array('datas' => AnnouncementModel::getAnnouncement())
+		);
 	}
 
 	/**
