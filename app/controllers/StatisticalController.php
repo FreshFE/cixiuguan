@@ -13,12 +13,7 @@ class StatisticalController extends BaseController {
 		$thex = array();//景点名称X轴显示
 		$data = array();//统计景点个数柱状显示
 
-		$results = DB::select('SELECT COUNT(*) AS num,title 
-							   FROM checkin c 
-							   JOIN place p 
-							   ON c.place_id = p.id 
-							   GROUP BY place_id'
-				    ); 
+		$results = StatisticalModel::getBar();
 		
 		$i = 0;
 		foreach ($results as $key => $value) {
