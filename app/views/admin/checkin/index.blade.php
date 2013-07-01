@@ -3,15 +3,15 @@
 @section('mainarea')
 
 	<ul class="breadcrumb">
-		<li><a href="#">管理后台</a> <span class="divider">/</span></li>
-		<li><a href="#">评价模块</a> <span class="divider">/</span></li>
+		<li><a href="{{ action('AdminController@index') }}">管理后台</a> <span class="divider">/</span></li>
+		<li><a href="{{ action('CheckinController@index') }}">评价模块</a> <span class="divider">/</span></li>
 		<li class="active">列表</li>
 	</ul>
 
-	<form class="form-search pull-right">
-		<input type="text" class="input-medium search-query" placeholder="搜索编号">
-		<button type="submit" class="btn">Search</button>
-	</form>
+	{{ Form::open(array('url' => 'admin/checkin/search', 'class' => 'form-search pull-right', 'method' => 'get')) }}
+		{{ Form::text('id', null, array('class' => 'input-medium search-query', 'placeholder' => '搜索编号')) }}
+		{{ Form::button('搜索', array('type' => 'submit', 'class' => 'btn')) }}
+	{{ Form::close() }}
 
 	<table class="table">
 		<thead>
@@ -24,15 +24,17 @@
 			</tr>
 		</thead>
 		<tbody>
+			@foreach ($checkinDetail as $data)
 			<tr>
-				<td>1</td>
-				<td>1</td>
-				<td>1</td>
-				<td>1</td>
+				<td>{{ $data->id }}</td>
+				<td>{{ $data->comments }}</td>
+				<td>{{ $data->stars }}</td>
+				<td>{{ $data->create_at }}</td>
 				<td>
-					<a href="#" class="btn btn-mini"><i class="icon-trash"></i></a>
+					<a href="#" class="btn btn-mini" title="删除"><i class="icon-trash"></i></a>
 				</td>
 			</tr>
+			@endforeach
 		</tbody>
 	</table>
 

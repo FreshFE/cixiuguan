@@ -3,58 +3,47 @@
 class CheckinController extends BaseController
 {	
 	/**
-	 * 显示签到信息	 *
-	 *
+	 * 显示签到信息
 	 */
 	public  function index()
 	{
-		$result = CheckinModel::getCheckin();
-
-		if(is_array($result) && count($result)> 0 ) {
-			return View::make('checkin', array('checkinDetail' => $result));
-		} else {
-			echo 'error';
-		}
+		return View::make('admin/checkin/index',
+			array('checkinDetail' => CheckinModel::getCheckin())
+		);
 	}
 	
 	/**
-	 * 签到内容搜索 *
-	 *
+	 * 签到内容搜索
 	 */
 	public function search()
 	{
-		$id = Input::get('id');
-		return $this->show($id);
+		return $this->show(Input::get('id'));
 	}
 	
 	/**
-	 * 签到内容搜索 *
+	 * 签到内容搜索
+	 *
 	 * @param int $id
 	 */
 	public function show($id)
 	{
-		$result = CheckinModel::getCheckinById($id);
-
-		if(is_array($result) && count($result)> 0 ) {
-			return View::make('checkin', array('checkinDetail' => $result));
-		} else {
-			echo 'error';
-		}
+		return View::make('admin/checkin/index',
+			array('checkinDetail' => CheckinModel::getCheckinById($id))
+		);
 	}
 	
 	/**
-	 * 删除签到内容 *
-	 * 
+	 * 删除签到内容
 	 */
 	public function destory($id)
-	{
-		$result = CheckinModel::deleteById($id);
-		
-		if($result > 0){
-			return Redirect::action('CheckinController@index');
+	{	
+		if(CheckinModel::deleteById($id)) {
+			Session::flash('error', '删除成功');
 		} else {
-			echo 'error';
+			Session::flash('error', '删除失败');
 		}
+
+		return Redirect::back();
 	}
 
 }
