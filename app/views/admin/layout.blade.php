@@ -56,6 +56,6 @@
 	</div>
 
 	@yield('bodyjs')
-
 </body>
+
 </html>

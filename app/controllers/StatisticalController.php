@@ -22,16 +22,21 @@ class StatisticalController extends BaseController {
 		$dataOne = date('Y-m-d h:i:s', time()-30*24*60*60);//本月数据
 		$dateTwo = date('Y-m-d h:i:s');//当前时间
 		$thex = array();//景点名称X轴显示
-		$data = array();//统计景点个数柱状显示
+		$data = array();//统计景点个数柱状显示 
 
 		$results = StatisticalModel::getBar($dataOne, $dateTwo);//查询一个月数据
-	
+
 		$i = 0;
 		foreach ($results as $key => $value) {
-			$thex[$i] = $value['title'];
-			$data[$i] = $value['num'];
+			$thex[$i] = iconv('UTF-8', 'GB2312', $value->title) ;
+			$data[$i] = $value->num;
 			$i++;
 		}
+
+		// var_dump($thex);
+		// echo '<hr>';
+		// var_dump($data);
+		// exit();
 
 		$graph = new Graph(800,800,'auto');
 		$graph->SetScale("textlin");

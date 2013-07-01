@@ -9,7 +9,7 @@ class AnnouncementModel extends Eloquent
 	 */
 	public static function getAnnouncement()
 	{
-		$result = DB::table('announcement')-> get();
+		$result = DB::table('announcement')->orderBy('id', 'desc')->paginate(10);
 		return $result;
 	}
 

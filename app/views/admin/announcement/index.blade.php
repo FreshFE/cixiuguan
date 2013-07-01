@@ -43,5 +43,4 @@
 			@endforeach
 		</tbody>
 	</table>
-
 @stop

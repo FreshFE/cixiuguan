@@ -9,7 +9,7 @@ class CheckinModel extends Eloquent
 	 */
 	public static function getCheckin()
 	{
-		$result = DB::table('checkin')->get();
+		$result = DB::table('checkin')->orderBy('id', 'desc')->paginate(10);
 		return $result;
 	}
 

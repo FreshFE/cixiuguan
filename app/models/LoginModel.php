@@ -11,7 +11,7 @@ class LoginModel extends Eloquent
 		$user = LoginModel::login($username,$password);
 
  		if($user) {
- 			if(strlen($user[0]['username']) > 0) { 				
+ 			if(strlen($user[0]->username) > 0) { 				
  				return $user;		
  			}
  		}
@@ -25,9 +25,11 @@ class LoginModel extends Eloquent
 	public static function login($username, $password)
 	{
 		$result = DB::table('user')->where('username', '=', $username)->get();
+		//var_dump($result);
+		//exit();
 		
 		if (is_array($result) && count($result) > 0) {
-			if (strlen($password) > 0 && $password == $result[0]['password']) {
+			if (strlen($password) > 0 && $password == $result[0]->password) {
 				return $result;
 			}
 		}

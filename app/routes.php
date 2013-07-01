@@ -65,6 +65,15 @@ Route::group(array('prefix' => 'admin'), function()
 		Route::get('{id}/delete', 'CheckinController@destory');
 	});
 
+	//登陆页面
+	Route::get('login', 'LoginController@index');
+	//登陆成功跳转
+	Route::post('loginSuccess', 'LoginController@loginSuccess');
+
+	//统计图
+	Route::get('bar', 'StatisticalController@getBar');
+	Route::get('statistical', 'StatisticalController@index');
+
 	// 后台首页
 	Route::get('/', 'AdminController@index');
 });
@@ -80,13 +89,5 @@ Route::get('/', function()
 /**
  * 管理员登陆
  */
-//登陆页面
-Route::get('login', 'LoginController@index');
 
-//登陆成功跳转
-Route::post('loginSuccess', 'LoginController@loginSuccess');
 
-//统计图
-Route::get('bar', 'StatisticalController@getBar');
-
-Route::get('statistical', 'StatisticalController@index');
