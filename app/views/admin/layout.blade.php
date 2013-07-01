@@ -5,6 +5,7 @@
 	<title>刺绣馆</title>
 
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.css') }}">
+	<script type="text/javascript" src="{{ asset('assets/js/jquery.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('assets/js/bootstrap.js') }}"></script>
 	<style type="text/css">
 		#content {
@@ -53,6 +54,8 @@
 			</div>
 		</div>
 	</div>
+
+	@yield('bodyjs')
 
 </body>
 </html>
