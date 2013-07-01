@@ -34,6 +34,7 @@ class ApiCheckinController extends BaseController
 	    }
 	    // 验证成功，插入数据库
 	    else {
+
 			DB::table('checkin')->insert($data);
 			return $this->successJson($data);
 	    }
@@ -51,9 +52,9 @@ class ApiCheckinController extends BaseController
 		// 得到checkin的stars字段，这是一个数组，array(1,2,3,4,1,3)，求平均数，加入$data
 		$data['starsAvg'] = round(DB::table('checkin')->where('place_id', '=', $place_id)->avg('stars'));
 
-		if (empty($data['starsAvg'])) {
-			$data['starsAvg'] = '3';
-		}
+		//if (empty($data['starsAvg'])) {
+		//	$data['starsAvg'] = '3';
+		//}
 
  		return $this->successJson($data);
 	}
@@ -69,21 +70,11 @@ class ApiCheckinController extends BaseController
 		//return $this->successJson($data);
 		$page = Input::get('page');
 		$comments = array();
-		$data = DB::table('checkin')->where('place_id', '=', $place_id)->paginate(10);
+		$data = DB::table('checkin')->where('place_id', '=', $place_id)->orderBy('id', 'desc')->paginate(10);
 		$totalPage =$data->getLastPage();
 		
 		foreach ($data as $value) {
 			$comments[] = $value;
-			/*
-			$comments[] = $value['comments'];
-			$comments[] = $value['id'];
-			$comments[] = $value['place_id'];
-			$comments[] = $value['lat'];
-			$comments[] = $value['lng'];
-			$comments[] = $value['stars'];
-			$comments[] = $value['valid_tag'];
-			$comments[] = $value['create_at'];
-			$comments[] = $value['update_at'];*/
 		}
 
 		if($page > $totalPage){//如果输入的页数超过总页数则return errorJson

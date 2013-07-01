@@ -7,8 +7,20 @@ class ApiAnnouncementController extends BaseController
 	 */
 	public function index()
 	{
-		$data = DB::table('announcement')->get();
-        return $this->successJson($data);
+		$page = Input::get('page');
+		$anns = array();
+		$data = DB::table('announcement')->orderBy('id', 'desc')->paginate(10);
+		$totalPage =$data->getLastPage();
+
+		foreach ($data as $value) {
+			$anns[] = $value;
+		}
+
+		if($page > $totalPage){//如果输入的页数超过总页数则return errorJson
+			return $this->errorCommentsJson($anns);
+		}else{
+			return $this->successCommentsJson($anns);
+		}
 	}
 
 	/**
