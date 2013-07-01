@@ -1,7 +1,8 @@
 <?php
 use JpGraph\JpGraph;
-define('TTF_DIR','/Users/tommy/Developing/php/cixiuguan/fonts/');
-define('MBTTF_DIR','/Users/tommy/Developing/php/cixiuguan/fonts/');
+
+define('TTF_DIR', base_path() . '/fonts/');
+define('MBTTF_DIR', base_path() . '/fonts/');
 
 class StatisticalController extends BaseController {
 	
@@ -26,17 +27,10 @@ class StatisticalController extends BaseController {
 
 		$results = StatisticalModel::getBar($dataOne, $dateTwo);//查询一个月数据
 
-		$i = 0;
 		foreach ($results as $key => $value) {
-			$thex[$i] = iconv('UTF-8', 'GB2312', $value->title) ;
-			$data[$i] = $value->num;
-			$i++;
+			$thex[$key] = $value->title;
+			$data[$key] = $value->num;
 		}
-
-		// var_dump($thex);
-		// echo '<hr>';
-		// var_dump($data);
-		// exit();
 
 		$graph = new Graph(800,800,'auto');
 		$graph->SetScale("textlin");
