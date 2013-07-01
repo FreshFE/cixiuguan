@@ -85,3 +85,8 @@ Route::get('login', 'LoginController@index');
 
 //登陆成功跳转
 Route::post('loginSuccess', 'LoginController@loginSuccess');
+
+//统计图
+Route::get('bar', 'StatisticalController@getBar');
+
+Route::get('statistical', 'StatisticalController@index');
