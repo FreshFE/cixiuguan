@@ -37,6 +37,9 @@ Route::group(array('prefix' => 'api'), function()
  */
 Route::group(array('prefix' => 'admin'), function()
 {
+	// 后台首页
+	Route::get('/', 'AdminController@index');
+
 	//布告列表
 	Route::get('announcement', 'AnnouncementController@index');
 
@@ -58,7 +61,7 @@ Route::group(array('prefix' => 'admin'), function()
 	Route::get('checkin', 'CheckinController@index');
 
 	//签到搜索
-	Route::post('checkin/search', 'CheckinController@search');
+	Route::get('checkin/search', 'CheckinController@search');
 	Route::get('checkin/{id}', 'CheckinController@show');
 
 	//签到删除
