@@ -11,7 +11,7 @@
 	<div class="toolbar clearfix">
 		<a href="{{ action('AnnouncementController@getCreate') }}" class="btn"><i class="icon-file"></i> 创建</a>
 
-		{{ Form::open(array('action' => 'AnnouncementController@search', 'class' => 'form-search pull-right', 'method' => 'get')) }}
+		{{ Form::open(array('action' => 'AnnouncementController@show', 'class' => 'form-search pull-right', 'method' => 'get')) }}
 			{{ Form::text('id', null, array('class' => 'input-medium search-query', 'placeholder' => '搜索编号')) }}
 			{{ Form::button('搜索', array('type' => 'submit', 'class' => 'btn')) }}
 		{{ Form::close() }}
