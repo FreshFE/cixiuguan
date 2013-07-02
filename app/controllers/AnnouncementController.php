@@ -13,23 +13,14 @@ class AnnouncementController extends BaseController
 	}
 
 	/**
-	 * 布告搜索功能 *
-	 *
-	 */
-	public function search()
-	{
-		$id = Input::get('id');
-		return $this->show($id);
-	}
-
-	/**
 	 * 根据ID 搜索布告	 *
 	 *@param int $aid
 	 */
-	public function show($id)
+	public function show()
 	{
-		return View::make('admin/announcement/show',
-			array('data' => AnnouncementModel::firstById($id))
+		$id = Input::get('id');
+		return View::make('admin/announcement/index',
+			array('datas' => AnnouncementModel::firstById($id))
 		);
 	}
 
