@@ -11,11 +11,22 @@ class ApiCheckinController extends BaseController
 	 */
 	public function create()
 	{
+		$lat = Input::get('lat');
+		$lng = Input::get('lng');
+		
+		if($lat == NULL){
+			$lat = 0;
+		}
+
+		if($lng == NULL){
+			$lng = 0;
+		}
+
 		// 通过 Input post 方式获得数据
 		$data = array(
 			'place_id' => Input::get('place_id'),
-			'lat' => Input::get('lat'),
-			'lng' => Input::get('lng'),
+			'lat' => $lat,
+			'lng' => $lng,
 			'comments' => Input::get('comments'),
 			'stars' => Input::get('stars'),
 			'create_at' => date('Y-m-d H:i')
@@ -73,7 +84,8 @@ class ApiCheckinController extends BaseController
 		$data = DB::table('checkin')->where('place_id', '=', $place_id)->orderBy('id', 'desc')->paginate(10);
 		$totalPage =$data->getLastPage();
 		
-		foreach ($data as $value) {
+
+		foreach ($data as $key =>$value) {
 			$comments[] = $value;
 		}
 
