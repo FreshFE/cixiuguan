@@ -1,8 +1,11 @@
 <?php
 use JpGraph\JpGraph;
-define('TTF_DIR','/Users/tommy/Developing/php/cixiuguan/fonts/');
-define('MBTTF_DIR','/Users/tommy/Developing/php/cixiuguan/fonts/');
-header('Content-type: text/html; charset=gbk') ;
+
+//define('TTF_DIR','/Users/tommy/Developing/php/cixiuguan/fonts/');
+//define('MBTTF_DIR','/Users/tommy/Developing/php/cixiuguan/fonts/');
+//header('Content-type: text/html; charset=gbk') ;
+define('TTF_DIR', base_path() . '/fonts/');
+define('MBTTF_DIR', base_path() . '/fonts/');
 
 class StatisticalController extends BaseController {
 	
@@ -27,18 +30,15 @@ class StatisticalController extends BaseController {
 
 		$results = StatisticalModel::getBar($dataOne, $dateTwo);//查询一个月数据
 
-		$i = 0;
 		foreach ($results as $key => $value) {
-		//	$thex[$i] = iconv('UTF-8', 'GB2312', $value->title) ;
-			$thex[$i] = $value->title;
-			$data[$i] = $value->num;
-			$i++;
-		}
 
-		// var_dump($thex);
-		// echo '<hr>';
-		// var_dump($data);
-		// exit();
+		//	$thex[$i] = iconv('UTF-8', 'GB2312', $value->title) ;
+		//	$thex[$i] = $value->title;
+		//	$data[$i] = $value->num;
+		//	$i++;
+			$thex[$key] = $value->title;
+			$data[$key] = $value->num;
+		}
 
 		$graph = new Graph(800,800,'auto');
 		$graph->SetScale("textlin");
@@ -46,18 +46,18 @@ class StatisticalController extends BaseController {
 		$graph->SetBox(false);
 		$graph->ygrid->SetFill(false);
 
-	//	$graph->title->SetFont(FF_SIMSUN,FS_BOLD);	
+		$graph->title->SetFont(FF_SIMSUN,FS_BOLD);	
 		$graph->title->Set("周庄景点统计数量");
 		$graph->title->SetMargin(70);
 		$graph->title->SetColor("red");
 
-	//	$graph->yaxis->title->SetFont(FF_SIMSUN,FS_BOLD);
+		$graph->yaxis->title->SetFont(FF_SIMSUN,FS_BOLD);
 		$graph->yaxis->title->Set("统计数量");	
 		$graph->yaxis->title->SetColor("red");
 		$graph->yaxis->HideLine(false);
 		$graph->yaxis->HideTicks(false,false);
 
-	//	$graph->xaxis->SetFont(FF_SIMSUN,FS_BOLD);
+		$graph->xaxis->SetFont(FF_SIMSUN,FS_BOLD);
 		$graph->xaxis->title->SetFont(FF_SIMSUN,FS_BOLD);
 		$graph->xaxis->title->Set("刺绣管名称");
 		$graph->xaxis->title->SetColor("red");
