@@ -31,8 +31,8 @@ class AnnouncementModel extends Eloquent
 	 * @return stdClass
 	 */
 	public static function firstById($id)
-	{
-		return DB::table('announcement')->where('id', '=', $id)->first();
+	{//"'%".$id."%'"
+		return DB::table('announcement')->where('title', 'LIKE', '%'.$id.'%')->get();
 	}
 
 	/**
