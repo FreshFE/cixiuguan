@@ -49,10 +49,9 @@ Route::group(array('prefix' => 'admin'), function()
 		Route::get('/', 'AnnouncementController@index');
 		Route::get('create', 'AnnouncementController@getCreate');
 		Route::post('create', 'AnnouncementController@postCreate');
-		Route::get('search', 'AnnouncementController@search');
 		Route::get('{id}/edit', 'AnnouncementController@getEdit');
 		Route::post('edit', 'AnnouncementController@postEdit');
-		Route::get('{id}', 'AnnouncementController@show');
+		Route::get('show', 'AnnouncementController@show');
 		Route::get('{id}/delete', 'AnnouncementController@destory');
 	});
 	
