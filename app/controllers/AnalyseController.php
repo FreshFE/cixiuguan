@@ -1,17 +1,15 @@
 <?php
+
 use JpGraph\JpGraph;
 
-//define('TTF_DIR','/Users/tommy/Developing/php/cixiuguan/fonts/');
-//define('MBTTF_DIR','/Users/tommy/Developing/php/cixiuguan/fonts/');
-//header('Content-type: text/html; charset=gbk') ;
-define('TTF_DIR', base_path() . '/fonts/');
-define('MBTTF_DIR', base_path() . '/fonts/');
-
-class StatisticalController extends BaseController {
+class AnalyseController extends BaseController {
 	
+	/**
+	 * 统计首页
+	 */
 	public function index()
 	{
-		return View::make('bar');
+		return View::make('admin/analyse/index');
 	}
 	
 	/**
@@ -19,27 +17,35 @@ class StatisticalController extends BaseController {
 	 *
 	 * @param $dataOne, $dateTwo
 	 */
-	public function getBar()
+	public function getChatPlace($dateOne, $dateTwo)
 	{
-		JpGraph::load();//load jpgraph的方法
-		JpGraph::module('bar');
-		$dataOne = date('Y-m-d h:i:s', time()-30*24*60*60);//本月数据
-		$dateTwo = date('Y-m-d h:i:s');//当前时间
-		$thex = array();//景点名称X轴显示
-		$data = array();//统计景点个数柱状显示 
+		// 配置字体常量
+		define('TTF_DIR', base_path() . '/fonts/');
+		define('MBTTF_DIR', base_path() . '/fonts/');
 
-		$results = StatisticalModel::getBar($dataOne, $dateTwo);//查询一个月数据
+		// 加载模块
+		JpGraph::module('bar');
+
+		// 计算时间
+		// 本月数据
+		// 当前时间
+		$dataOne = date('Y-m-d h:i:s', time()-30*24*60*60);
+		$dateTwo = date('Y-m-d h:i:s');
+
+		// 查询一个月数据
+		$results = StatisticalModel::getBar($dataOne, $dateTwo);
+
+		// 景点名称X轴显示
+		// 统计景点个数柱状显示 
+		$thex = array();
+		$data = array();
 
 		foreach ($results as $key => $value) {
-
-		//	$thex[$i] = iconv('UTF-8', 'GB2312', $value->title) ;
-		//	$thex[$i] = $value->title;
-		//	$data[$i] = $value->num;
-		//	$i++;
 			$thex[$key] = $value->title;
 			$data[$key] = $value->num;
 		}
 
+		// 新建画布
 		$graph = new Graph(800,800,'auto');
 		$graph->SetScale("textlin");
 		$graph->yaxis->scale->SetGrace(20); 
@@ -71,6 +77,6 @@ class StatisticalController extends BaseController {
 		$b1plot->SetColor("white");
 		$b1plot->SetFillGradient("#4B0082","white",GRAD_LEFT_REFLECTION);
 		$b1plot->SetWidth(45);
-		$graph->Stroke(); 
+		$graph->Stroke();
 	}	
 }
