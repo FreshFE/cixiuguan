@@ -7,7 +7,7 @@ class AnalyseController extends BaseController {
 	/**
 	 * 统计首页
 	 */
-	public function index()
+	public function getIndex()
 	{
 		return View::make('admin/analyse/index');
 	}
@@ -17,7 +17,7 @@ class AnalyseController extends BaseController {
 	 *
 	 * @param $dataOne, $dateTwo
 	 */
-	public function getChatPlace($dateOne, $dateTwo)
+	public function getChatPlace()
 	{
 		// 配置字体常量
 		define('TTF_DIR', base_path() . '/fonts/');
