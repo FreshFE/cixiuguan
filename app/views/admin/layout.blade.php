@@ -45,7 +45,7 @@
 			<ul class="nav nav-pills nav-stacked">
 				<li @if (Route::currentRouteAction() == 'CheckinController@index') class="active" @endif><a href="{{ action('CheckinController@index') }}">评价管理</a></li>
 				<li @if (Route::currentRouteAction() == 'AnnouncementController@index') class="active" @endif><a href="{{ action('AnnouncementController@index') }}">公告管理</a></li>
-				<li><a href="#">统计模块</a></li>
+				<li @if (Route::currentRouteAction() == 'AnalyseController@getIndex') class="active" @endif><a href="{{ action('AnalyseController@getIndex') }}">统计模块</a></li>
 			</ul>
 		</div>
 		<div class="mainarea">
