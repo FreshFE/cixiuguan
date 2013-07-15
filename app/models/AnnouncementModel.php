@@ -32,7 +32,7 @@ class AnnouncementModel extends Eloquent
 	 */
 	public static function firstById($id)
 	{//"'%".$id."%'"
-		return DB::table('announcement')->where('title', 'LIKE', '%'.$id.'%')->get();
+		return DB::table('announcement')->where('title', 'LIKE', '%'.$id.'%')->paginate(10);
 	}
 
 	/**

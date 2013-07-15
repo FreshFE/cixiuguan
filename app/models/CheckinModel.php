@@ -20,7 +20,7 @@ class CheckinModel extends Eloquent
 	*/
 	public static function getCheckinById($id)
 	{
-		$result = DB::table('checkin')->where('comments', 'like', '%'.$id.'%')->get();
+		$result = DB::table('checkin')->where('comments', 'like', '%'.$id.'%')->paginate(10);
 		return $result;
 	} 
 

@@ -15,10 +15,12 @@ class AnalyseController extends BaseController {
 	/**
 	 * 获得统计图像
 	 *
-	 * @param $dataOne, $dateTwo
+	 * @param $start_time, $finish_time
 	 */
 	public function getChatPlace()
 	{
+		$createImage = Input::get('createImage');
+
 		// 配置字体常量
 		define('TTF_DIR', base_path() . '/fonts/');
 		define('MBTTF_DIR', base_path() . '/fonts/');
@@ -29,24 +31,33 @@ class AnalyseController extends BaseController {
 		// 计算时间
 		// 本月数据
 		// 当前时间
-		$dataOne = date('Y-m-d h:i:s', time()-30*24*60*60);
-		$dateTwo = date('Y-m-d h:i:s');
-
-		// 查询一个月数据
-		$results = StatisticalModel::getBar($dataOne, $dateTwo);
-
-		// 景点名称X轴显示
+		$startTime = Input::get('startTime');
+		$finishTime =  Input::get('finishTime');
+		$startTime == NULL?$startTime = date('Y-m-d h:i:s', time()-30*24*60*60): $startTime = date('Y-m-d', strtotime($startTime)) ;
+		$finishTime == NULL?$finishTime = date('Y-m-d h:i:s') : $finishTime = date('Y-m-d', strtotime($finishTime));
+ 	//var_dump($startTime);
+ 	//var_dump($finishTime);
+ 	//exit();	
+ 		// 景点名称X轴显示
 		// 统计景点个数柱状显示 
 		$thex = array();
 		$data = array();
 
-		foreach ($results as $key => $value) {
-			$thex[$key] = $value->title;
-			$data[$key] = $value->num;
+		// 查询一个月数据
+		$results = StatisticalModel::getBar($startTime, $finishTime);
+		//JPGRAPH默认不支持空数组
+		if(is_array($results) && count($results) > 0 && !empty($results)){
+			foreach ($results as $key => $value) {
+				$thex[$key] = $value->title;
+				$data[$key] = $value->num;
+			}
+		}else{
+			$thex[] = 0;
+			$data[] = 0;
 		}
 
 		// 新建画布
-		$graph = new Graph(800,800,'auto');
+		$graph = new Graph(800,800);
 		$graph->SetScale("textlin");
 		$graph->yaxis->scale->SetGrace(20); 
 		$graph->SetBox(false);
@@ -77,6 +88,12 @@ class AnalyseController extends BaseController {
 		$b1plot->SetColor("white");
 		$b1plot->SetFillGradient("#4B0082","white",GRAD_LEFT_REFLECTION);
 		$b1plot->SetWidth(45);
-		$graph->Stroke();
+			
+
+		if(is_null($createImage)){
+			$graph->Stroke();	
+		}else{
+			$graph->Stroke('jimage.jpg');
+		}
 	}	
 }

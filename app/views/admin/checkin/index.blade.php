@@ -9,7 +9,7 @@
 	</ul>
 
 	{{ Form::open(array('url' => 'admin/checkin/search', 'class' => 'form-search pull-right', 'method' => 'get')) }}
-		{{ Form::text('id', null, array('class' => 'input-medium search-query', 'placeholder' => '搜索编号')) }}
+		{{ Form::text('id', null, array('class' => 'input-medium search-query', 'placeholder' => '按评价搜索')) }}
 		{{ Form::button('搜索', array('type' => 'submit', 'class' => 'btn')) }}
 	{{ Form::close() }}
 
@@ -37,5 +37,5 @@
 			@endforeach
 		</tbody>
 	</table>
-
+	<div>{{ $checkinDetail->links(); }}</div>
 @stop

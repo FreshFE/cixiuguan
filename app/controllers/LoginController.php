@@ -8,6 +8,8 @@ class LoginController extends BaseController
 	 */
 	public function index()
 	{
+		//$value = Session::get('username');
+		//var_dump($value);
 		$data['msg'] = '';
 		return View::make('login', array('msg' => $data));
 	}
@@ -25,6 +27,7 @@ class LoginController extends BaseController
 		$result = LoginModel::adminLogin($username, $password);
 		
 		if ($result) {
+			Session::regenerate();
 			Session::put('username', $username);
 			return Redirect::action('AnnouncementController@index');
 		} else {

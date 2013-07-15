@@ -2,25 +2,14 @@
 class StatisticalModel extends Eloquent
 {
 	
-	public static function getBar($dateOne, $dataTwo)
+	public static function getBar($startTime, $finishTime)
 	{
-		
-		/*$results = DB::select('SELECT COUNT(*) AS num,title 
-							   FROM checkin c 
-							   JOIN place p 
-							   ON c.place_id = p.id 
-							   where create_at > DATE_SUB(create_at, INTERVAL 1 MONTH)
-							   GROUP BY place_id'	
-							);*/
-		
-		//查询一个月间的数据	
-		$results = DB::select("SELECT COUNT(*) AS num,title 
-							   FROM checkin c 
-							   JOIN place p 
-							   ON c.place_id = p.id 
-							   where create_at between '".$dateOne."' and '".$dataTwo."'
-							   GROUP BY place_id"	 
-				    );
+		$results = DB::table('checkin')
+					->select(DB::raw('count(*) as num, title'))
+					->join('place', 'place_id', '=', 'place.id')
+                    ->whereBetween('create_at', array($startTime, $finishTime))
+                    ->groupBy('place_id')
+                    ->get();
 		return $results; 
 	}
 }
