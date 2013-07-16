@@ -41,7 +41,7 @@ Route::group(array('prefix' => 'api'), function()
 /**
  * 管理员部分
  */
-Route::group(array('prefix' => 'admin'), function()
+Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
 {
 	// 公告
 	Route::group(array('prefix' => 'announcement'), function()
@@ -71,15 +71,16 @@ Route::group(array('prefix' => 'admin'), function()
 		Route::get('chat/place', 'AnalyseController@getChatPlace');
 	});
 
+	
+	// 后台首页
+	Route::get('/', 'AdminController@index');
+});
+	
 	//登陆页面
 	Route::get('login', 'LoginController@index');
 
 	//登陆成功跳转
-	Route::post('loginSuccess', 'LoginController@loginSuccess');
-
-	// 后台首页
-	Route::get('/', 'AdminController@index');
-});
+	Route::post('admin/loginSuccess', 'LoginController@loginSuccess');
 
 /**
  * 根目录 */

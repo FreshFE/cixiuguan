@@ -27,7 +27,7 @@
 
 @section('bodyjs')
 
-	<script type="text/javascript" src="{{ asset('assets/js/datePicker//jquery-ui.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('assets/js/datePicker/jquery-ui.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('assets/js/datePicker/jquery-css.css') }}"></script>
 	<script type="text/javascript" src="{{ asset('assets/js/datePicker/datePicker.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('assets/js/datePicker/js/jquery-ui-1.10.3.custom.js') }}"></script>
