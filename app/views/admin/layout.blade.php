@@ -41,12 +41,16 @@
 
 	<div id="content clearfix">
 		<div class="sidebar">
-			<div class="logo">Cixiuguan</div>
-			<ul class="nav nav-pills nav-stacked">
-				<li @if (Route::currentRouteAction() == 'CheckinController@index') class="active" @endif><a href="{{ action('CheckinController@index') }}">评价管理</a></li>
-				<li @if (Route::currentRouteAction() == 'AnnouncementController@index') class="active" @endif><a href="{{ action('AnnouncementController@index') }}">公告管理</a></li>
-				<li @if (Route::currentRouteAction() == 'AnalyseController@getIndex') class="active" @endif><a href="{{ action('AnalyseController@getIndex') }}">统计模块</a></li>
-			</ul>
+			@section('sidebar')
+				<div class="logo">Cixiuguan</div>
+				@section('navigation')
+				<ul class="nav nav-pills nav-stacked">
+					<li @if (Route::currentRouteAction() == 'CheckinController@index') class="active" @endif><a href="{{ action('CheckinController@index') }}">评价管理</a></li>
+					<li @if (Route::currentRouteAction() == 'AnnouncementController@index') class="active" @endif><a href="{{ action('AnnouncementController@index') }}">公告管理</a></li>
+					<li @if (Route::currentRouteAction() == 'AnalyseController@getIndex') class="active" @endif><a href="{{ action('AnalyseController@getIndex') }}">统计模块</a></li>
+				</ul>
+				@show
+			@show
 		</div>
 		<div class="mainarea">
 			<div class="inner">
