@@ -26,7 +26,7 @@ class LoginController extends BaseController
 		
 		if ($result) {
 			Session::put('username', $username);
-			return Redirect::action('AnnouncementController@index');
+			return Redirect::action('CheckinController@index');
 		} else {
 			$data['msg'] = '用户名和密码不正确';
 			return View::make('login', array('msg' => $data));
